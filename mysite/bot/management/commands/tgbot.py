@@ -78,10 +78,7 @@ class DirectionBot:
             response_text = self.city.get(recommended_city)
             self.bot.send_message(message.chat.id, response_text)
         else:
-            recommended_city = recommended_city[0]
-            response_text = self.city.get(recommended_city)
-            self.bot.send_message(message.chat.id, response_text)
-            # self.bot.send_message(message.chat.id, "Я не могу подобрать вам город для посещения.")
+             self.bot.send_message(message.chat.id, "Я не могу подобрать вам город для посещения.")
 
         additional_question = "Хотели бы вы получать интересную информацию о новых интересных места в городах?"
         markup = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
