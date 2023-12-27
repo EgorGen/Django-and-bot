@@ -78,7 +78,10 @@ class DirectionBot:
             response_text = self.city.get(recommended_city)
             self.bot.send_message(message.chat.id, response_text)
         else:
-            self.bot.send_message(message.chat.id, "Я не могу подобрать вам город для посещения.")
+            recommended_city = recommended_city[0]
+            response_text = self.city.get(recommended_city)
+            self.bot.send_message(message.chat.id, response_text)
+            # self.bot.send_message(message.chat.id, "Я не могу подобрать вам город для посещения.")
 
         additional_question = "Хотели бы вы получать интересную информацию о новых интересных места в городах?"
         markup = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
@@ -101,7 +104,7 @@ class DirectionBot:
             ).save()
             self.restart(message)
         elif user_answer == 'нет':
-            self.bot.send_message(message.chat.id, "Хорошо! Удачного поступления в вуз.")
+            self.bot.send_message(message.chat.id, ":Жаль. Хорошего время провождения!")
             chat_id = message.chat.id
             prof, _ = Profile.objects.get_or_create(
                 external_id=chat_id,
